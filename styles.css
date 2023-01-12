@@ -1,0 +1,424 @@
+* {
+   margin: 0;
+   padding: 0;
+   border-radius: 0;
+   font-family: sans-serif;
+}
+
+body {
+   background: linear-gradient(#ffffff, #44ab23);
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-attachment: fixed;
+   display: flex;
+   flex-direction: column;
+}
+
+header {
+   width: 90%;
+   display: flex;
+   margin: 20px auto 25px auto;
+   flex-wrap: wrap;
+   justify-content: start;
+}
+
+.logo {
+   min-width: 100px;
+   min-height: 100px;
+   background-image: url(./img/logo2.png);
+   background-position: center;
+   background-size: cover;
+   animation-duration: 6s;
+   animation-name: slidein;
+   animation-iteration-count: infinite;
+   /* display: flex; */
+   cursor: pointer;
+ }
+
+ @keyframes slidein {
+   from {
+      transform: rotateY(180deg);
+   }
+ 
+   to {
+      transform: rotateY(360deg);
+   }
+ }
+
+ .logo_text {
+   font-size: 24px;
+   font-family: sans-serif;
+   line-height: 40px;
+   font-weight: bold;
+   margin: 5px 10px; 
+   background: linear-gradient(45deg, #4a974a 15%, #1dcf1d 30%, #3a8f3a);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   /* color: #3a8f3a; */
+   /* text-transform: uppercase; */
+   /* display: flex; */
+   /* flex-direction: column; */
+   /* justify-content: center; */
+   /* text-align: start; */
+   /* justify-content: start; */
+   /* align-content: flex-start; */
+ }
+
+.menu {
+   width: 90%;
+   /* background-color: #8080801f; */
+   /* border-radius: 10px; */
+   display: flex;
+   justify-content: space-around;
+   margin: auto;
+   /* flex-wrap: wrap; */
+}
+
+.btn_header {
+   width: 100%;
+   height: 50px;
+   background: #5eab6026;
+   border: none;
+   border-radius: 7px;
+   padding: 10px;
+   color: #2a5a2a;
+   font-size: 18px;
+   line-height: 18px;
+   /* font-weight: bold; */
+   cursor: pointer;
+   margin: 10px;
+   box-shadow: 0 0 10px 0px black;
+}
+
+.btn_header:hover {
+   transition: 200ms;
+   box-shadow: 0 0 3px black;
+}
+
+.btn_header:active {
+   box-shadow: none;
+}
+
+.btnActiv {
+   background: #8ae96b;
+   box-shadow: none;
+}
+
+/* Слайдер......................................................... */
+.greating_block {
+   width: 100%;
+   max-width: 1600px;
+   height: 900px;
+   margin: 30px auto;
+   display: flex;
+   align-items:center;
+}
+
+.slidebar_block {
+   width: 100%;
+   height: 100%;
+   background-color: #8080801f;
+   border-radius: 15px;
+   margin: auto;
+   overflow: hidden;
+   position: relative;
+   display: flex;
+   align-items: end;
+   box-shadow: 0 0 10px black;
+}
+
+.img_slidebar {
+   height: 100%;
+   width: 100%;
+   position: absolute;
+   top: 0;
+   left: 0;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   transition: transform 2s;
+   pointer-events: none;
+}
+
+.img_slide{
+   width: 100px;
+   height: 100px;
+   -webkit-filter: 0 0 5px black;
+   filter: drop-shadow(0 0 5px black);
+}
+
+.img_slide:hover {
+   -webkit-filter: 0 0 3px gray;
+   filter: drop-shadow(0 0 3px black);
+}
+
+.img_slide:active {
+   -webkit-filter: none;
+}
+/* Слайдер......................................................... */
+
+.pharmacy_adress_block {
+   width: 90%;
+   /* background-color: #8080801f;
+   border-radius: 10px; */
+   margin: auto;
+   opacity: 0;
+   display: none;
+}
+
+.info_panel {
+   width: 100%;
+   height: auto;
+   background-color: #8080801f;
+   border-radius: 10px;
+   display: grid;
+   grid-template-columns: 100%;
+   overflow:hidden;
+   margin-top: 100px;
+   cursor: pointer;
+   opacity: 0;
+   transition: margin-top 2s, opacity 1s;
+   box-shadow: 0 0 10px 0px black
+}
+
+.info_panel:hover {
+   transition: 200ms;
+   box-shadow: 0 0 3px black;
+}
+
+.info_panel:active {
+   box-shadow: none;
+}
+
+.info_panel__mod1 {
+   height: 500px;
+   grid-template-columns: 50% 50%;
+}
+
+.smooth {
+   opacity: 1;
+   margin-top: 20px;
+   transition: margin-top 1s, opacity 1s;
+}
+
+.adress {
+   margin: 10px;
+}
+
+.mapHidden {
+   display: none;
+}
+
+.visible {
+   display: block;
+}
+
+.btn_header__menu {
+   display: none;
+}
+
+.news_block {
+   width: auto;
+   height: auto;
+   border-radius: 15px;
+   background-color: #44ab23e6;
+   position: absolute;
+   margin: 10px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   text-align: center;
+   box-shadow: 0 0 5px black;
+}
+
+.news_post {
+   font-size: 20px;
+   margin-top: 20px;
+   color: #a5ff16;
+   padding: 10px;
+}
+
+.heading_post {
+   color: #a5ff16;
+}
+
+@media screen and (max-width: 1250px) {
+   .greating_block {
+      height: 620px;
+  }
+   .menu {
+      flex-wrap: wrap;
+   }
+   .img_slide {
+      width: 60px;
+      height: 60px;
+  }
+   .btn_header {
+      display: none;
+      opacity: 0;
+   }
+   .btn_margin{
+      margin-bottom: -30px;
+   }
+   .visible {
+      display: block;
+   }
+   .smooth_menu {
+      opacity: 1;
+      margin-bottom: 10px;
+      transition: margin-bottom 1s, opacity 2s;
+   }
+   .btn_header__menu {
+      display: block;
+      opacity: 1;
+   }
+}
+
+@media screen and (max-width: 900px) {
+   .greating_block {
+      height: 490px;
+   }
+   .img_slide {
+      width: 40px;
+      height: 40px;
+  }
+}
+
+@media screen and (max-width: 790px) {
+   .greating_block {
+      height: 350px;
+      margin-top: 15px;
+   }
+   header {
+      margin: 10px;
+   }
+}
+
+@media screen and (max-width: 650px) {
+   .btn_header {
+      font-size: 12px;
+      margin-top: 5px;
+      padding: 5px;
+      box-shadow: 0 0 10px 0px black;
+      height: 30px;
+      min-width: 230px;
+   }
+   .heading_post {
+      color: #a5ff16;
+      font-size: 16px;
+      margin-top: 5px;
+   }
+   .news_post {
+      font-size: 12px;
+      margin-top: 5px;
+      color: #a5ff16;
+      margin: auto 10px;
+   }
+   .adress {
+      font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+   .logo_text {
+      font-size: 20px;
+      line-height: 20px;
+      text-align: center;
+   }
+
+    header {
+      justify-content: center;
+      margin: 5px;
+   }
+
+   .greating_block {
+      margin-top: 5px;
+      height: 250px;
+   }
+
+    .btn_header {
+      font-size: 12px;
+      margin-top: 5px;
+      padding: 5px;
+      box-shadow: 0 0 10px 0px black;
+      height: 30px;
+      min-width: 230px;
+   }
+
+   .info_panel {
+      grid-template-columns: none;
+   }
+
+   .info_panel__mod1 {
+      height: 300px;
+   }   
+
+   .adress {
+      font-size: 10px;
+   }
+
+   .pharmacy_adress_block {
+      margin: 5px auto;
+   }
+
+   .smooth {
+      opacity: 1;
+      margin-top: 5px;
+   }
+
+   .btn_header:hover {
+      box-shadow: 0 0 3px black;
+  }
+
+  .btn_header:active {
+   transition: 200ms;
+   box-shadow: none;
+   }
+
+   .logo {
+      min-width: 50px;
+      min-height: 50px;
+   }
+
+   .img_slide {
+      width: 30px;
+      height: 30px;
+   }
+   .heading_post {
+      font-size: 12px;
+   }
+   .news_post {
+      font-size: 10px;
+   }
+}
+
+@media screen and (max-width: 360px) {
+   .greating_block {
+      margin-top: 5px;
+      height: 200px;
+      min-width: 260px;
+   }
+   .btn_header {
+      font-size: 10px;
+      padding: 5px;
+      box-shadow: 0 0 10px 0px black;
+      height: 20px;
+      min-width: 230px;
+      line-height: 10px;
+   }
+   .heading_post {
+      font-size: 8px;
+      margin-top: 5px;
+   }
+   .news_post {
+      font-size: 8px;
+      margin: auto 10px;
+   }
+   .img_slide {
+      display: none;
+   }
+   .slidebar_block {
+      width: 90%;
+   }
+}

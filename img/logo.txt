@@ -1,0 +1,11 @@
+            <!-- <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+               <g class="layer">
+                  <title>logo</title>
+                  <g id="svg_8">
+                  <ellipse cx="50" cy="50" fill="#00ff00" id="svg_1" rx="49.5" ry="49" stroke="#000000" stroke-width="0"/>
+                  <rect fill="#ffffff" height="73.5" id="svg_2" stroke="#ffffff" stroke-width="0" width="17.33" x="41.34" y="13.25"/>
+                  <rect fill="#ffffff" height="150" id="svg_3" stroke="#ffffff" stroke-width="0" transform="matrix(0 -0.49 0.495 0 48.7625 331.75)" width="35" x="556.5" y="-73.5"/>
+                  </g>
+               </g>
+            </svg> -->
+            <!-- <img class="logo" src="./img/logo2.png" alt=""> -->
