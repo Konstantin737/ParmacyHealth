@@ -21,7 +21,7 @@ body {
 header {
    width: 90%;
    display: flex;
-   margin: 20px auto 25px auto;
+   margin: 10px auto 5px auto;
    flex-wrap: wrap;
    justify-content: space-between;
 }
@@ -103,7 +103,7 @@ header {
 .greating_block {
    width: 90%;
    border-radius: 20px;
-   margin: 20px auto;
+   margin: 10px auto;
    display: flex;
    position: relative;
    justify-content: center;
@@ -285,6 +285,7 @@ img {
    text-align: right;
    font-weight: bold;
    color: #3a8f3a;
+   cursor: pointer;
 }
 
 .hidden {
@@ -453,9 +454,11 @@ input:focus, textarea:focus {
 
 @media screen and (max-width: 1047px) {
 .adress_panel {
-   margin: auto;
+   width: 100%;
+   margin: 20px auto;
    text-align: center;
-   height: 80px;
+   background: #5eab6026;
+   border-radius: 7px;
 }
 }
 @media screen and (max-width: 650px) {
