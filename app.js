@@ -190,6 +190,8 @@ document.addEventListener('DOMContentLoaded', () => {
          items:1,
          autoplay: true,
          autoplayHoverPause: true,
+         autoplayTimeout: 8000,
+         autoplaySpeed: 4000,
          loop:true,
       });
    });
