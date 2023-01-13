@@ -13,6 +13,9 @@ body {
    display: flex;
    flex-direction: column;
 }
+.wrapper {
+   margin-top: 20px;
+}
 
 .h1, h2, h3 {
    color: #44ab23;;
