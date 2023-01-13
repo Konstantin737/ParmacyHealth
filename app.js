@@ -2,30 +2,122 @@
 document.addEventListener('DOMContentLoaded', () => {
 
    const adressBtn = document.querySelectorAll('.info_panel')
-   const allMap = document.querySelectorAll('.mapHidden')
+   const allMap = document.querySelectorAll('.hidden')
    const pharmacyBlock = document.querySelector('.pharmacy_adress_block')
-   const ourParmacyBtn = document.querySelector('#our_parmacy')
-   let infoPanel = document.querySelectorAll('.info_panel')
-   let greetingBlock = document.querySelector('.greating_block')
-   let logoBtn = document.querySelector('.logo')
-   let btn = document.querySelectorAll('.btn_header')
-   let btnMenu = document.querySelector('.btn_header')
+   const infoPanel = document.querySelectorAll('.info_panel')
+   const greetingBlock = document.querySelector('.greating_block')
+   const logoBtn = document.querySelector('.logo')
+   const btn = document.querySelectorAll('.btn_header')
+   const feetback = document.querySelector('.feedback')
+   const jobOpenings = document.querySelector('.job_openings')
+   const documentation = document.querySelector('.documentation')
+   const biography = document.querySelector('.biography')
+   
 
 
-   // btn.forEach(btnItem => btnItem.addEventListener('click', ()=>{
-   //    activOrDisable(btnItem)
-   // }))
-   // const activOrDisable = (btnItem) => {
-   //    if(btnItem.style.background != 'rgb(147, 253, 149)') {
-   //       btnItem.style.background = 'rgb(147, 253, 149)'
-   //    } else if (btnItem.style.background == 'rgb(147, 253, 149)') {
-   //       btnItem.style.background = 'rgba(94, 171, 96, 0.15)'
-   //    }
-   // }
-
+   //Имплементация нажатия на любую кнопку меню
    btn.forEach((btnItem, indexBtn) => btnItem.addEventListener('click', ()=>{
-      activOrDisable(btnItem, indexBtn)
+      //Имплементация кнопки МЕНЮ(открыть закрыть)
+      if(indexBtn === 0) {
+         btn.forEach((btnItem, indexBtn) => {
+            if(indexBtn != 0) {
+               btnItem.classList.toggle('visible')
+               setTimeout(()=>{
+                  btnItem.classList.toggle('smooth_menu')
+               },5)
+            }
+         })
+      }
+      //Имплементация кнопки НАШИ АПТЕКИ
+      if (indexBtn === 1) {
+         greetingBlock.classList.add('hidden') //убираю экран слайдера (или ставлю его toggle)
+         pharmacyBlock.classList.remove('novisible')
+         feetback.classList.remove('visible', 'smooth')
+         jobOpenings.classList.remove('visible', 'smooth')
+         documentation.classList.remove('visible', 'smooth')
+         biography.classList.remove('visible', 'smooth')
+         setTimeout(()=>{
+            pharmacyBlock.style.opacity = 1
+            infoPanel.forEach(
+               function(item) {
+                  item.classList.add('smooth')
+               }
+            )
+         }, 100)
+      }
+      //Имплементация кнопки ОБРАТНАЯ СВЯЗЬ
+      if (indexBtn === 2) {
+         feetback.classList.add('visible')
+         setTimeout(()=>{
+            feetback.classList.add('smooth')
+         }, 100)
+         greetingBlock.classList.add('hidden')
+         pharmacyBlock.classList.add('novisible')
+         jobOpenings.classList.remove('visible', 'smooth')
+         documentation.classList.remove('visible', 'smooth')
+         biography.classList.remove('visible', 'smooth')
+         infoPanel.forEach(
+            function(item) {
+               item.classList.remove('smooth')
+            }
+         )
+      }
+      //Имплементация кнопки ВАКАНСИИ
+      if (indexBtn === 3) {
+         jobOpenings.classList.add('visible')
+         setTimeout(()=>{
+            jobOpenings.classList.add('smooth')
+         }, 100)
+         greetingBlock.classList.add('hidden')
+         pharmacyBlock.classList.add('novisible')
+         feetback.classList.remove('visible', 'smooth')
+         documentation.classList.remove('visible', 'smooth')
+         biography.classList.remove('visible', 'smooth')
+         infoPanel.forEach(
+            function(item) {
+               item.classList.remove('smooth')
+            }
+         )
+      }
+      //Имплементация кнопки ДОКУМЕНТАЦИЯ
+      if (indexBtn === 4) {
+         documentation.classList.add('visible')
+         setTimeout(()=>{
+            documentation.classList.add('smooth')
+         }, 100)
+         greetingBlock.classList.add('hidden')
+         pharmacyBlock.classList.add('novisible')
+         feetback.classList.remove('visible', 'smooth')
+         jobOpenings.classList.remove('visible', 'smooth')
+         biography.classList.remove('visible', 'smooth')
+         infoPanel.forEach(
+            function(item) {
+               item.classList.remove('smooth')
+            }
+         )
+      }
+      //Имплементация кнопки БИОГРАФИЯ
+      if (indexBtn === 5) {
+         biography.classList.add('visible')
+         setTimeout(()=>{
+            biography.classList.add('smooth')
+         }, 100)
+         greetingBlock.classList.add('hidden')
+         pharmacyBlock.classList.add('novisible')
+         feetback.classList.remove('visible', 'smooth')
+         jobOpenings.classList.remove('visible', 'smooth')
+         documentation.classList.remove('visible', 'smooth')
+         infoPanel.forEach(
+            function(item) {
+               item.classList.remove('smooth')
+            }
+         )
+      }
+
+      activOrDisable(btnItem, indexBtn)//функция выделения активной клавиши
    }))
+
+
    const activOrDisable = (btnItem, indexBtn) => {
       // btn.forEach((item, index) => index != indexBtn ? item.classList.remove('btnActiv') : '')//вариант переключателя
       btn.forEach((item, index) => index != indexBtn && index != 0 ? item.classList.remove('btnActiv') : '')
@@ -34,18 +126,22 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
          btnItem.classList.add('btnActiv')
       }
-      // indexBtn === 0 ? btnItem.classList.toggle('btnActiv') : '';
-      // btnItem.classList.add('btnActiv')
+      // indexBtn === 0 ? btnItem.classList.toggle('btnActiv') : '';//вариант переключателя
+      // btnItem.classList.add('btnActiv')//вариант переключателя
    }
 
    logoBtn.addEventListener('click', () => {
       btn.forEach((item) => {
-         return item.classList.remove('btnActiv'), 
+         item.classList.remove('btnActiv'), 
          item.classList.remove('visible'), 
          item.classList.remove('smooth_menu')}
       )
-      greetingBlock.classList.remove('mapHidden')
-      pharmacyBlock.style.display = 'none'
+      greetingBlock.classList.remove('hidden')
+      pharmacyBlock.classList.add('novisible')
+      feetback.classList.remove('visible', 'smooth')
+      jobOpenings.classList.remove('visible', 'smooth')
+      documentation.classList.remove('visible', 'smooth')
+      biography.classList.remove('visible', 'smooth')
       pharmacyBlock.style.opacity = 0
       infoPanel.forEach(
          function(item) {
@@ -53,102 +149,9 @@ document.addEventListener('DOMContentLoaded', () => {
       })
    })
 
-   // Автоматический слайдер 8 влево 8 вправо
-   let countSlideLeft = 1;
-   let countSlideRight = 1;
-   setInterval(()=>{
-      if(countSlideLeft != 8) {
-         rigtSlide()
-         countSlideLeft++
-      } else if(countSlideLeft===8 && countSlideRight!=8){
-         leftSlide()
-         countSlideRight++
-      } else {
-         countSlideLeft = 1
-         countSlideRight = 1
-      }
-   }, 8000)
-
-   // Автоматический слайдер 8 влево 8 вправо
-
-   //Слайдер по клику.............................................................................................................
-   const slides = document.querySelectorAll('.img_slidebar'); //выбрал все слайды
-   const clickLeft = document.querySelector('.clickLeft'); //выбрал левое лого
-   const clickRight = document.querySelector('.clickRight'); //выбрал правое лого
-
-   let currentSlide = 0;
-   const sliderNumber = slides.length - 1;//иначе будет +1 прокрутка из за 0 индекса
-
-   const moveToSlide = function(slide) {
-      slides.forEach((s, index) => (s.style.transform = `translateX(${(index - slide) * 100}%)`));
-      //1 слайд = -100%, 2 слайд = 0%, 3 слайд = 100%, 4 слайд = 200%
-   }
- 
-   moveToSlide(0);
-
-   const rigtSlide = function() {
-      if(currentSlide === sliderNumber) {
-      currentSlide = 0;
-      } else {
-      currentSlide++;
-      }
-      moveToSlide(currentSlide);
-   }
-   
-   const leftSlide = function() {
-      if(currentSlide === 0) {
-      currentSlide = sliderNumber;
-      } else {
-      currentSlide--;
-      }
-      moveToSlide(currentSlide);
-   }
-
-   clickLeft.addEventListener('click', ()=>{leftSlide(), countSlideRight!=8?countSlideRight++:countSlideRight=1}) //перемещение вплево
-   clickRight.addEventListener('click', ()=>{rigtSlide(), countSlideLeft!=8?countSlideLeft++:countSlideLeft=1}) //перемещение вправо
-   //Слайдер по клику.............................................................................................................
-   const desktop = window.innerWidth
-   // if
-
-
-   //Имплементация меню
-   btnMenu.onclick = () => {
-      btn.forEach((item, index) => {
-         if(index != 0) {
-            item.classList.toggle('visible')
-            setTimeout(()=>{
-               item.classList.toggle('smooth_menu')
-            },5)
-         }
-      })
-   }
-
-   ourParmacyBtn.onclick = () => {
-      greetingBlock.classList.add('mapHidden') //убираю экран слайдера (или ставлю его toggle)
-      // if(pharmacyBlock.style.display != 'block') {
-      pharmacyBlock.style.display = 'block'
-      setTimeout(()=>{
-         pharmacyBlock.style.opacity = 1
-         infoPanel.forEach(
-            function(item) {
-               item.classList.add('smooth')
-            }
-         )
-      }, 100)
-   //    } else {
-   //       pharmacyBlock.style.display = 'none'
-   //       pharmacyBlock.style.opacity = 0
-   //       infoPanel.forEach(
-   //          function(item) {
-   //             item.classList.remove('smooth')
-   //          }
-   //       )
-   //    }
-   }
-
    const openInfoCard = (adressPanel, index) => {
       adressPanel.classList.toggle('info_panel__mod1')
-      allMap[index].classList.toggle('mapHidden')
+      allMap[index].classList.toggle('hidden')
       adressPanel.scrollIntoView({
          behavior: 'smooth',
          block: 'center'
@@ -159,6 +162,37 @@ document.addEventListener('DOMContentLoaded', () => {
       openInfoCard(adressPanel, index)
    })})
 
+   //Импелементация карусели со свайпом
+   $(document).ready(function(){
+      $(".js-owl-carousel-1").owlCarousel({
+         items:1,//количество видимых элементов
+         autoplay: true,
+         // autoHeight:true, //авто выравнивание по высоте
+         // autoWidth:true, //авто выравнивание по ширине
+         autoplayTimeout: 12000, //скорость замирания слайда
+         autoplaySpeed: 4000, //скорость перелистывания слайда слайда
+         autoplayHoverPause: true, //остановка слайда при наведении мыши
+         loop:true, //закольцевать картинки
+         margin:20,
+         // nav:true,
+         responsive:{ //количество элементов показываемых на определенной ширине поля
+             0:{
+                 items:1
+             },
+             1530:{
+                 items:2
+             },
+             3000:{
+                 items:3
+             }},
+      });
+      $(".js-owl-carousel-2").owlCarousel({
+         items:1,
+         autoplay: true,
+         autoplayHoverPause: true,
+         loop:true,
+      });
+   });
 })
 
 
@@ -345,7 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
    // const map6 = document.querySelector('#map6')
    // ip1.addEventListener('click', ()=>{
    //    ip1.classList.toggle('info_panel__mod1')
-   //    map1.classList.toggle('mapHidden')
+   //    map1.classList.toggle('hidden')
    //    ip1.scrollIntoView({
    //       behavior: 'smooth',
    //       block: 'center'
@@ -353,36 +387,93 @@ document.addEventListener('DOMContentLoaded', () => {
    // })
    // ip2.addEventListener('click', ()=>{
    //    ip2.classList.toggle('info_panel__mod1')
-   //    map2.classList.toggle('mapHidden')
+   //    map2.classList.toggle('hidden')
    //    ip2.scrollIntoView({
    //       behavior: 'smooth'
    //   });
    // })
    // ip3.addEventListener('click', ()=>{
    //    ip3.classList.toggle('info_panel__mod1')
-   //    map3.classList.toggle('mapHidden')
+   //    map3.classList.toggle('hidden')
    //    ip3.scrollIntoView({
    //       behavior: 'smooth'
    //   });
    // })
    // ip4.addEventListener('click', ()=>{
    //    ip4.classList.toggle('info_panel__mod1')
-   //    map4.classList.toggle('mapHidden')
+   //    map4.classList.toggle('hidden')
    //    ip4.scrollIntoView({
    //       behavior: 'smooth'
    //   });
    // })
    // ip5.addEventListener('click', ()=>{
    //    ip5.classList.toggle('info_panel__mod1')
-   //    map5.classList.toggle('mapHidden')
+   //    map5.classList.toggle('hidden')
    //    ip5.scrollIntoView({
    //       behavior: 'smooth'
    //   });
    // })
    // ip6.addEventListener('click', ()=>{
    //    ip6.classList.toggle('info_panel__mod1')
-   //    map6.classList.toggle('mapHidden')
+   //    map6.classList.toggle('hidden')
    //    ip6.scrollIntoView({
    //       behavior: 'smooth'
    //   });
    // })
+
+
+
+      // // Автоматический слайдер 8 влево 8 вправо
+   // let countSlideLeft = 1;
+   // let countSlideRight = 1;
+   // setInterval(()=>{
+   //    if(countSlideLeft != 8) {
+   //       rigtSlide()
+   //       countSlideLeft++
+   //    } else if(countSlideLeft===8 && countSlideRight!=8){
+   //       leftSlide()
+   //       countSlideRight++
+   //    } else {
+   //       countSlideLeft = 1
+   //       countSlideRight = 1
+   //    }
+   // }, 8000)
+
+   // // Автоматический слайдер 8 влево 8 вправо
+
+   // //Слайдер по клику.............................................................................................................
+   // const slides = document.querySelectorAll('.img_slidebar'); //выбрал все слайды
+   // const clickLeft = document.querySelector('.clickLeft'); //выбрал левое лого
+   // const clickRight = document.querySelector('.clickRight'); //выбрал правое лого
+
+   // let currentSlide = 0;
+   // const sliderNumber = slides.length - 1;//иначе будет +1 прокрутка из за 0 индекса
+
+   // const moveToSlide = function(slide) {
+   //    slides.forEach((s, index) => (s.style.transform = `translateX(${(index - slide) * 100}%)`));
+   //    //1 слайд = -100%, 2 слайд = 0%, 3 слайд = 100%, 4 слайд = 200%
+   // }
+ 
+   // moveToSlide(0);
+
+   // const rigtSlide = function() {
+   //    if(currentSlide === sliderNumber) {
+   //    currentSlide = 0;
+   //    } else {
+   //    currentSlide++;
+   //    }
+   //    moveToSlide(currentSlide);
+   // }
+   
+   // const leftSlide = function() {
+   //    if(currentSlide === 0) {
+   //    currentSlide = sliderNumber;
+   //    } else {
+   //    currentSlide--;
+   //    }
+   //    moveToSlide(currentSlide);
+   // }
+
+   // clickLeft.addEventListener('click', ()=>{leftSlide(), countSlideRight!=8?countSlideRight++:countSlideRight=1}) //перемещение вплево
+   // clickRight.addEventListener('click', ()=>{rigtSlide(), countSlideLeft!=8?countSlideLeft++:countSlideLeft=1}) //перемещение вправо
+   // //Слайдер по клику.............................................................................................................

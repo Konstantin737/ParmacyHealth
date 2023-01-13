@@ -14,12 +14,16 @@ body {
    flex-direction: column;
 }
 
+.h1, h2, h3 {
+   color: #44ab23;;
+}
+
 header {
    width: 90%;
    display: flex;
    margin: 20px auto 25px auto;
    flex-wrap: wrap;
-   justify-content: start;
+   justify-content: space-between;
 }
 
 .logo {
@@ -46,7 +50,7 @@ header {
  }
 
  .logo_text {
-   font-size: 24px;
+   font-size: 30px;
    font-family: sans-serif;
    line-height: 40px;
    font-weight: bold;
@@ -54,20 +58,10 @@ header {
    background: linear-gradient(45deg, #4a974a 15%, #1dcf1d 30%, #3a8f3a);
    -webkit-background-clip: text;
    -webkit-text-fill-color: transparent;
-   /* color: #3a8f3a; */
-   /* text-transform: uppercase; */
-   /* display: flex; */
-   /* flex-direction: column; */
-   /* justify-content: center; */
-   /* text-align: start; */
-   /* justify-content: start; */
-   /* align-content: flex-start; */
  }
 
 .menu {
    width: 90%;
-   /* background-color: #8080801f; */
-   /* border-radius: 10px; */
    display: flex;
    justify-content: space-around;
    margin: auto;
@@ -81,7 +75,8 @@ header {
    border: none;
    border-radius: 7px;
    padding: 10px;
-   color: #2a5a2a;
+   color: #44ab23;
+   font-weight: bold;
    font-size: 18px;
    line-height: 18px;
    /* font-weight: bold; */
@@ -106,70 +101,64 @@ header {
 
 /* Слайдер......................................................... */
 .greating_block {
-   width: 100%;
-   max-width: 1600px;
-   height: 900px;
-   margin: 30px auto;
+   width: 90%;
+   border-radius: 20px;
+   margin: 20px auto;
    display: flex;
-   align-items:center;
+   position: relative;
+   justify-content: center;
+   align-items: center;
 }
 
-.slidebar_block {
-   width: 100%;
-   height: 100%;
-   background-color: #8080801f;
+img {
+   border-radius: 20px;
+   cursor: pointer;
+   pointer-events: none
+}
+
+.news_block {
+   width: auto;
+   height: auto;
    border-radius: 15px;
-   margin: auto;
-   overflow: hidden;
-   position: relative;
+   background-color: #0a1b05af;
+   position: absolute;
+   left: 0;
+   right: 0;
+   bottom: 40px;
+   margin: auto 40px;
    display: flex;
-   align-items: end;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   text-align: center;
    box-shadow: 0 0 10px black;
 }
 
-.img_slidebar {
-   height: 100%;
-   width: 100%;
-   position: absolute;
-   top: 0;
-   left: 0;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   transition: transform 2s;
-   pointer-events: none;
+.news_post {
+   font-size: 2vw;
+   margin: 5px;
+   color: #44ab23;
+   /* font-weight: bold; */
 }
 
-.img_slide{
-   width: 100px;
-   height: 100px;
-   -webkit-filter: 0 0 5px black;
-   filter: drop-shadow(0 0 5px black);
+.heading_post {
+   font-size: 2vw;
+   margin: 5px;
+   color: #44ab23;
 }
 
-.img_slide:hover {
-   -webkit-filter: 0 0 3px gray;
-   filter: drop-shadow(0 0 3px black);
-}
-
-.img_slide:active {
-   -webkit-filter: none;
-}
 /* Слайдер......................................................... */
 
 .pharmacy_adress_block {
    width: 90%;
-   /* background-color: #8080801f;
-   border-radius: 10px; */
    margin: auto;
    opacity: 0;
-   display: none;
 }
 
 .info_panel {
    width: 100%;
    height: auto;
-   background-color: #8080801f;
+   background-color: #1c3b18;
    border-radius: 10px;
    display: grid;
    grid-template-columns: 100%;
@@ -195,6 +184,89 @@ header {
    grid-template-columns: 50% 50%;
 }
 
+/*Форма для обратной связи.........................................................................*/
+.feedback {
+   width: 80%;
+   padding: 0 20px 30px 20px;
+   background-color: #1c3b18;
+   border-radius: 10px;
+   margin: 60px auto;
+   box-shadow: 0 0 10px 0px black;
+   display: none;
+   opacity: 0;
+}
+
+#feedback-page{
+	text-align:center;
+}
+
+.feedback-input {
+	color:#3c3c3c;
+	font-family: Helvetica, Arial, sans-serif;
+   font-weight:500;
+	font-size: 18px;
+	border-radius: 0;
+	line-height: 22px;
+	background-color: #fbfbfb;
+	padding: 13px 13px 13px 54px;
+	margin-bottom: 10px;
+	width:100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+   border: 3px solid rgba(0,0,0,0);
+}
+
+.feedback-input:focus{
+	background: #fff;
+	box-shadow: 0;
+	border: 3px solid #44ab23;
+	color: #44ab23;
+	outline: none;
+  padding: 13px 13px 13px 54px;
+}
+
+.focused{
+	color:#44ab23;
+	border:#44ab23 solid 3px;
+}
+/*Форма для обратной связи.........................................................................*/
+
+/*Панель вакансий.........................................................................*/
+.job_openings {
+   width: 80%;
+   padding: 20px 20px 30px 20px;
+   background-color: #1c3b18;
+   border-radius: 10px;
+   margin: 60px auto;
+   box-shadow: 0 0 10px 0px black;
+   display: none;
+   opacity: 0;
+}
+
+.documentation {
+   width: 80%;
+   padding: 20px 20px 30px 20px;
+   background-color: #1c3b18;
+   border-radius: 10px;
+   margin: 60px auto;
+   box-shadow: 0 0 10px 0px black;
+   display: none;
+   opacity: 0;
+}
+
+.biography {
+   width: 80%;
+   padding: 20px 20px 30px 20px;
+   background-color: #1c3b18;
+   border-radius: 10px;
+   margin: 60px auto;
+   box-shadow: 0 0 10px 0px black;
+   display: none;
+   opacity: 0;
+}
+
 .smooth {
    opacity: 1;
    margin-top: 20px;
@@ -205,7 +277,17 @@ header {
    margin: 10px;
 }
 
-.mapHidden {
+.adress_panel {
+   width: 550px;
+   height: 100px;
+   font-size: 16px;
+   overflow: hidden;
+   text-align: right;
+   font-weight: bold;
+   color: #3a8f3a;
+}
+
+.hidden {
    display: none;
 }
 
@@ -213,88 +295,169 @@ header {
    display: block;
 }
 
+.novisible {
+   display: none;
+}
+
 .btn_header__menu {
    display: none;
 }
 
-.news_block {
-   width: auto;
-   height: auto;
-   border-radius: 15px;
-   background-color: #44ab23e6;
-   position: absolute;
-   margin: 10px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
-   text-align: center;
-   box-shadow: 0 0 5px black;
+/* Icons ---------------------------------- */
+#name{
+	background-image: url('./img/logo2.png');
+	background-size: 30px 30px;
+	background-position: 11px 8px;
+	background-repeat: no-repeat;
 }
 
-.news_post {
-   font-size: 20px;
-   margin-top: 20px;
-   color: #a5ff16;
-   padding: 10px;
+#name:focus{
+	background-image: url('./img/logo2.png');
+	background-size: 30px 30px;
+	background-position: 8px 5px;
+   background-position: 11px 8px;
+	background-repeat: no-repeat;
 }
 
-.heading_post {
-   color: #a5ff16;
+#email{
+	background-image: url('./img/logo2.png');
+	background-size: 30px 30px;
+	background-position: 11px 8px;
+	background-repeat: no-repeat;
 }
 
+#email:focus{
+	background-image: url('./img/logo2.png');
+	background-size: 30px 30px;
+  background-position: 11px 8px;
+	background-repeat: no-repeat;
+}
+
+#comment{
+	background-image: url('./img/logo2.png');
+	background-size: 30px 30px;
+	background-position: 11px 8px;
+	background-repeat: no-repeat;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    line-height: 150%;
+    resize:vertical;
+}
+.feedback-subject-line {
+   height: 55px;
+}
+
+input:hover, textarea:hover,
+input:focus, textarea:focus {
+	background-color:white;
+}
+
+#button-blue{
+	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+	float:left;
+	width: 100%;
+	border: #fbfbfb solid 4px;
+	cursor:pointer;
+	background-color: #44ab23;
+	color:white;
+	font-size:24px;
+	padding-top:22px;
+	padding-bottom:22px;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+  margin-top:-4px;
+  font-weight:700;
+}
+
+#button-blue:hover{
+	background-color: rgba(0,0,0,0);
+	color: #44ab23;
+}
+	
+.submit:hover {
+	color: #44ab23;
+}
+	
+.ease {
+	width: 0px;
+	height: 74px;
+	background-color: #fbfbfb;
+	-webkit-transition: .3s ease;
+	-moz-transition: .3s ease;
+	-o-transition: .3s ease;
+	-ms-transition: .3s ease;
+	transition: .3s ease;
+}
+
+.submit:hover .ease{
+  width:100%;
+  background-color:white;
+}
+
+/*Форма для обратной связи.........................................................................*/
+@media screen and (min-width: 3000px) {
+   .news_post {
+      font-size: 1vw;
+   }
+
+   .heading_post {
+      font-size: 1vw;
+   }
+}
+@media screen and (min-width: 1530px) {
+   .news_post {
+      font-size: 1vw;
+   }
+
+   .heading_post {
+      font-size: 1vw;
+   }
+   .logo_text {
+      font-size: 32px;
+   }
+}
 @media screen and (max-width: 1250px) {
-   .greating_block {
-      height: 620px;
-  }
+
    .menu {
       flex-wrap: wrap;
    }
-   .img_slide {
-      width: 60px;
-      height: 60px;
-  }
+
    .btn_header {
       display: none;
       opacity: 0;
    }
+
    .btn_margin{
       margin-bottom: -30px;
    }
+
    .visible {
       display: block;
    }
+
    .smooth_menu {
       opacity: 1;
       margin-bottom: 10px;
       transition: margin-bottom 1s, opacity 2s;
    }
+
    .btn_header__menu {
       display: block;
       opacity: 1;
    }
 }
 
-@media screen and (max-width: 900px) {
-   .greating_block {
-      height: 490px;
-   }
-   .img_slide {
-      width: 40px;
-      height: 40px;
-  }
+@media screen and (max-width: 1047px) {
+.adress_panel {
+   margin: auto;
+   text-align: center;
+   height: 80px;
 }
-
-@media screen and (max-width: 790px) {
-   .greating_block {
-      height: 350px;
-      margin-top: 15px;
-   }
-   header {
-      margin: 10px;
-   }
 }
-
 @media screen and (max-width: 650px) {
    .btn_header {
       font-size: 12px;
@@ -304,20 +467,26 @@ header {
       height: 30px;
       min-width: 230px;
    }
-   .heading_post {
-      color: #a5ff16;
-      font-size: 16px;
-      margin-top: 5px;
-   }
-   .news_post {
-      font-size: 12px;
-      margin-top: 5px;
-      color: #a5ff16;
-      margin: auto 10px;
-   }
    .adress {
       font-size: 10px;
   }
+  .logo_text {
+   font-size: 16px;
+}
+}
+
+@media only screen and (max-width: 580px) {
+	#form-div{
+		left: 3%;
+		margin-right: 3%;
+		width: 88%;
+		margin-left: 0;
+		padding-left: 3%;
+		padding-right: 3%;
+	}
+   .logo_text {
+      font-size: 16px;
+   }
 }
 
 @media screen and (max-width: 420px) {
@@ -330,11 +499,6 @@ header {
     header {
       justify-content: center;
       margin: 5px;
-   }
-
-   .greating_block {
-      margin-top: 5px;
-      height: 250px;
    }
 
     .btn_header {
@@ -380,25 +544,13 @@ header {
       min-width: 50px;
       min-height: 50px;
    }
-
-   .img_slide {
-      width: 30px;
-      height: 30px;
-   }
-   .heading_post {
-      font-size: 12px;
-   }
-   .news_post {
-      font-size: 10px;
+   .logo_text {
+      font-size: 14px;
    }
 }
 
 @media screen and (max-width: 360px) {
-   .greating_block {
-      margin-top: 5px;
-      height: 200px;
-      min-width: 260px;
-   }
+
    .btn_header {
       font-size: 10px;
       padding: 5px;
@@ -406,19 +558,5 @@ header {
       height: 20px;
       min-width: 230px;
       line-height: 10px;
-   }
-   .heading_post {
-      font-size: 8px;
-      margin-top: 5px;
-   }
-   .news_post {
-      font-size: 8px;
-      margin: auto 10px;
-   }
-   .img_slide {
-      display: none;
-   }
-   .slidebar_block {
-      width: 90%;
    }
 }
