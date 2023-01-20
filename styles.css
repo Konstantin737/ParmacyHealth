@@ -13,12 +13,13 @@ body {
    display: flex;
    flex-direction: column;
 }
+
 .wrapper {
    margin-top: 20px;
 }
 
 .h1, h2, h3 {
-   color: #44ab23;;
+   color: #34761e;
 }
 
 header {
@@ -29,16 +30,20 @@ header {
    justify-content: space-between;
 }
 
+.logo_panel {
+   display: flex;
+   gap: 0.5rem;
+}
+
 .logo {
-   min-width: 100px;
-   min-height: 100px;
+   width: 100px;
+   height: 100px;
    background-image: url(./img/logo2.png);
    background-position: center;
    background-size: cover;
    animation-duration: 6s;
    animation-name: slidein;
    animation-iteration-count: infinite;
-   /* display: flex; */
    cursor: pointer;
  }
 
@@ -78,13 +83,13 @@ header {
    border: none;
    border-radius: 7px;
    padding: 10px;
-   color: #44ab23;
+   color: #34761e;
    font-weight: bold;
-   font-size: 18px;
+   font-size: 1rem;
    line-height: 18px;
    /* font-weight: bold; */
    cursor: pointer;
-   margin: 10px;
+   margin: 5px;
    box-shadow: 0 0 10px 0px black;
 }
 
@@ -98,8 +103,9 @@ header {
 }
 
 .btnActiv {
-   background: #8ae96b;
+   background: #44ab23;
    box-shadow: none;
+   color: white;
 }
 
 /* Слайдер......................................................... */
@@ -123,7 +129,7 @@ img {
    width: auto;
    height: auto;
    border-radius: 15px;
-   background-color: #0a1b05af;
+   background-color: #cee7cb94;
    position: absolute;
    left: 0;
    right: 0;
@@ -138,16 +144,16 @@ img {
 }
 
 .news_post {
-   font-size: 2vw;
-   margin: 5px;
-   color: #44ab23;
+   margin-top: 20px;
+   color: #34761e;
    /* font-weight: bold; */
+   font-size: 1rem;
 }
 
 .heading_post {
-   font-size: 2vw;
    margin: 5px;
-   color: #44ab23;
+   color: #34761e;
+   font-size: 1rem;
 }
 
 /* Слайдер......................................................... */
@@ -161,7 +167,7 @@ img {
 .info_panel {
    width: 100%;
    height: auto;
-   background-color: #1c3b18;
+   background-color: #cee7cb;
    border-radius: 10px;
    display: grid;
    grid-template-columns: 100%;
@@ -191,7 +197,7 @@ img {
 .feedback {
    width: 80%;
    padding: 0 20px 30px 20px;
-   background-color: #1c3b18;
+   background-color: #cee7cb;
    border-radius: 10px;
    margin: 60px auto;
    box-shadow: 0 0 10px 0px black;
@@ -240,29 +246,29 @@ img {
 .job_openings {
    width: 80%;
    padding: 20px 20px 30px 20px;
-   background-color: #1c3b18;
+   background-color: #cee7cb;
    border-radius: 10px;
    margin: 60px auto;
    box-shadow: 0 0 10px 0px black;
    display: none;
    opacity: 0;
 }
-
+/*Панель длкументации.........................................................................*/
 .documentation {
    width: 80%;
    padding: 20px 20px 30px 20px;
-   background-color: #1c3b18;
+   background-color: #cee7cb;
    border-radius: 10px;
    margin: 60px auto;
    box-shadow: 0 0 10px 0px black;
    display: none;
    opacity: 0;
 }
-
+/*Панель истории.........................................................................*/
 .biography {
    width: 80%;
    padding: 20px 20px 30px 20px;
-   background-color: #1c3b18;
+   background-color: #cee7cb;
    border-radius: 10px;
    margin: 60px auto;
    box-shadow: 0 0 10px 0px black;
@@ -282,7 +288,7 @@ img {
 
 .adress_panel {
    width: 550px;
-   height: 100px;
+   height: auto;
    font-size: 16px;
    overflow: hidden;
    text-align: right;
@@ -297,6 +303,10 @@ img {
 
 .visible {
    display: block;
+}
+.visible-flex {
+   display: flex;
+   flex-direction: column;
 }
 
 .novisible {
@@ -359,7 +369,7 @@ input:focus, textarea:focus {
 	background-color:white;
 }
 
-#button-blue{
+#button-send{
 	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 	float:left;
 	width: 100%;
@@ -377,7 +387,7 @@ input:focus, textarea:focus {
   font-weight:700;
 }
 
-#button-blue:hover{
+#button-send:hover{
 	background-color: rgba(0,0,0,0);
 	color: #44ab23;
 }
@@ -402,26 +412,52 @@ input:focus, textarea:focus {
   background-color:white;
 }
 
+
+.zero {
+   height: 100px;
+   /* margin-top: 30px; */
+}
+
+.footer {
+   position: fixed;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   padding: 2rem;
+   background: linear-gradient(#4fb130, #1e6a06);
+   color: white;
+   font-weight: 500;
+   font-size: 1rem;
+   text-align: center;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 0.5rem;
+   z-index: 1;
+}
+
+/* Валидация формы */
+input:invalid {
+   background-color: rgba(226, 194, 9, 0.342);
+ }
+
+ /* input:valid {
+   border: 6px solid #44ab23;
+ } */
+
 /*Форма для обратной связи.........................................................................*/
 @media screen and (min-width: 3000px) {
    .news_post {
-      font-size: 1vw;
+      font-size: 1rem;
    }
 
    .heading_post {
-      font-size: 1vw;
+      font-size: 1rem;
    }
 }
 @media screen and (min-width: 1530px) {
    .news_post {
-      font-size: 1vw;
-   }
-
-   .heading_post {
-      font-size: 1vw;
-   }
-   .logo_text {
-      font-size: 32px;
+      font-size: 1rem;
    }
 }
 @media screen and (max-width: 1250px) {
@@ -445,7 +481,7 @@ input:focus, textarea:focus {
 
    .smooth_menu {
       opacity: 1;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
       transition: margin-bottom 1s, opacity 2s;
    }
 
@@ -455,30 +491,31 @@ input:focus, textarea:focus {
    }
 }
 
-@media screen and (max-width: 1047px) {
-.adress_panel {
-   width: 100%;
-   margin: 20px auto;
-   text-align: center;
-   background: #5eab6026;
-   border-radius: 7px;
-}
+@media screen and (max-width: 1057px) {
+   .adress_panel {
+      width: 100%;
+      text-align: center;
+   }
+   header {
+      justify-content: center;
+  }
 }
 @media screen and (max-width: 650px) {
    .btn_header {
-      font-size: 12px;
       margin-top: 5px;
       padding: 5px;
       box-shadow: 0 0 10px 0px black;
       height: 30px;
       min-width: 230px;
    }
-   .adress {
-      font-size: 10px;
-  }
+   .logo {
+      width: 70px;
+      height: 70px;
+   }
   .logo_text {
-   font-size: 16px;
-}
+   font-size: 18px;
+   line-height: 30px;
+   }
 }
 
 @media only screen and (max-width: 580px) {
@@ -490,9 +527,6 @@ input:focus, textarea:focus {
 		padding-left: 3%;
 		padding-right: 3%;
 	}
-   .logo_text {
-      font-size: 16px;
-   }
 }
 
 @media screen and (max-width: 420px) {
@@ -504,7 +538,6 @@ input:focus, textarea:focus {
 
     header {
       justify-content: center;
-      margin: 5px;
    }
 
     .btn_header {
@@ -547,12 +580,22 @@ input:focus, textarea:focus {
    }
 
    .logo {
-      min-width: 50px;
-      min-height: 50px;
+      width: 50px;
+      height: 50px;
    }
    .logo_text {
       font-size: 14px;
    }
+
+   .news_post {
+      font-size: 0.7rem;
+   }
+   
+   .heading_post {
+
+      font-size: 0.7rem;
+   }
+
 }
 
 @media screen and (max-width: 360px) {
@@ -564,5 +607,14 @@ input:focus, textarea:focus {
       height: 20px;
       min-width: 230px;
       line-height: 10px;
+   }
+
+   .news_post {
+      font-size: 0.6rem;
+   }
+   
+   .heading_post {
+
+      font-size: 0.6rem;
    }
 }

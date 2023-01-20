@@ -13,23 +13,39 @@ document.addEventListener('DOMContentLoaded', () => {
    const documentation = document.querySelector('.documentation')
    const biography = document.querySelector('.biography')
    const frameMap = document.querySelectorAll('.frameMap')
+   const formSend = document.querySelector('.form')
    
 
    //Имплементация загрузки карт во фреймы
    const mapFrame = ['https://yandex.ru/map-widget/v1/-/CCUvMHd3KA', 'https://yandex.ru/map-widget/v1/-/CCUvMXvK2D', 'https://yandex.ru/map-widget/v1/-/CCUvMXwcKC', 'https://yandex.ru/map-widget/v1/-/CCUvQESe0B', 'https://yandex.ru/map-widget/v1/-/CCUvQEtZKD', 'https://yandex.ru/map-widget/v1/-/CCUvQISTpA'];
 
+   //Функция загрузки ссылок карт для фреймов
    const enterLinkFrame = (index) => {
       frameMap[index].src = mapFrame[index];
    }
-
    infoPanel.forEach((item, index) => {
       item.addEventListener('click', ()=>{
          enterLinkFrame(index)
       })
    })
 
+   //Функция сворачивания меню и всех панелек с адресами для всех кнопок
+   const hiddenMenuAndInfoPanel = (arrayBtn) => {
+      arrayBtn.forEach((item) => {
+         item.classList.remove('btnActiv'), 
+         item.classList.remove('visible'), 
+         item.classList.remove('smooth_menu')}
+      )
+      infoPanel.forEach(
+         function(item) {
+            item.classList.remove('smooth')
+         }
+      )
+   }
+
    //Имплементация нажатия на любую кнопку меню
-   btn.forEach((btnItem, indexBtn) => btnItem.addEventListener('click', ()=>{
+   btn.forEach((btnItem, indexBtn, arrayBtn) => btnItem.addEventListener('click', ()=>{
+
       //Имплементация кнопки МЕНЮ(открыть закрыть)
       if(indexBtn === 0) {
          btn.forEach((btnItem, indexBtn) => {
@@ -49,6 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
          jobOpenings.classList.remove('visible', 'smooth')
          documentation.classList.remove('visible', 'smooth')
          biography.classList.remove('visible', 'smooth')
+         arrayBtn.forEach((item) => {
+            item.classList.remove('btnActiv'), 
+            item.classList.remove('visible'), 
+            item.classList.remove('smooth_menu')}
+         )
          setTimeout(()=>{
             pharmacyBlock.style.opacity = 1
             infoPanel.forEach(
@@ -69,11 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
          jobOpenings.classList.remove('visible', 'smooth')
          documentation.classList.remove('visible', 'smooth')
          biography.classList.remove('visible', 'smooth')
-         infoPanel.forEach(
-            function(item) {
-               item.classList.remove('smooth')
-            }
-         )
+         hiddenMenuAndInfoPanel(arrayBtn)
       }
       //Имплементация кнопки ВАКАНСИИ
       if (indexBtn === 3) {
@@ -86,11 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
          feetback.classList.remove('visible', 'smooth')
          documentation.classList.remove('visible', 'smooth')
          biography.classList.remove('visible', 'smooth')
-         infoPanel.forEach(
-            function(item) {
-               item.classList.remove('smooth')
-            }
-         )
+         hiddenMenuAndInfoPanel(arrayBtn)
       }
       //Имплементация кнопки ДОКУМЕНТАЦИЯ
       if (indexBtn === 4) {
@@ -103,15 +116,11 @@ document.addEventListener('DOMContentLoaded', () => {
          feetback.classList.remove('visible', 'smooth')
          jobOpenings.classList.remove('visible', 'smooth')
          biography.classList.remove('visible', 'smooth')
-         infoPanel.forEach(
-            function(item) {
-               item.classList.remove('smooth')
-            }
-         )
+         hiddenMenuAndInfoPanel(arrayBtn)
       }
-      //Имплементация кнопки БИОГРАФИЯ
+      //Имплементация кнопки Наша история
       if (indexBtn === 5) {
-         biography.classList.add('visible')
+         biography.classList.add('visible-flex')
          setTimeout(()=>{
             biography.classList.add('smooth')
          }, 100)
@@ -120,11 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
          feetback.classList.remove('visible', 'smooth')
          jobOpenings.classList.remove('visible', 'smooth')
          documentation.classList.remove('visible', 'smooth')
-         infoPanel.forEach(
-            function(item) {
-               item.classList.remove('smooth')
-            }
-         )
+         hiddenMenuAndInfoPanel(arrayBtn)
       }
 
       activOrDisable(btnItem, indexBtn)//функция выделения активной клавиши
@@ -172,6 +177,31 @@ document.addEventListener('DOMContentLoaded', () => {
       openInfoCard(adressPanel, index)
    })})
 
+   //Отправка формы обратной связи
+   let feedbackMessage =[];
+   const getFormValue = (e) => {
+      e.preventDefault();
+      const userName = formSend.querySelector('[name="name"]')
+            userEmail = formSend.querySelector('[name="email"]'),
+            userSubject = formSend.querySelector('[name="text_subject"]'),
+            userMessage = formSend.querySelector('[name="text_message"]')
+      feedbackMessage = [...feedbackMessage, {
+         dataMessage: new Date,
+         userName: userName.value,
+         userEmail: userEmail.value,
+         text_subject: userSubject.value,
+         text_message: userMessage.value,
+      }]
+      console.log(feedbackMessage);
+   }
+   formSend.addEventListener('submit', getFormValue)
+
+   //Загрузка даты в подвал(footer)
+   let year = document.querySelector("#year");
+   $(document).ready(function () {
+   year.innerText = new Date().getFullYear();
+   });
+
    //Импелементация карусели со свайпом
    $(document).ready(function(){
       $(".js-owl-carousel-1").owlCarousel({
@@ -189,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
              0:{
                  items:1
              },
-             1530:{
+             1480:{
                  items:2
              },
              3000:{
@@ -201,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
          autoplay: true,
          autoplayHoverPause: true,
          autoplayTimeout: 8000,
-         autoplaySpeed: 4000,
+         autoplaySpeed: 2000,
          loop:true,
       });
    });
