@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
    //Загрузка даты в подвал(footer)
    let year = document.querySelector("#year")
    $(document).ready(function () {
-   year.innerText = new Date().getFullYear()
+   year.innerText = `2004 - ${new Date().getFullYear()}`
    })
 
    //Импелементация карусели со свайпом
