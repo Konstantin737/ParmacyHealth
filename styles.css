@@ -484,6 +484,7 @@ input:invalid {
 
 .form_item {
     position: relative;
+    width: 167px;
 }
 
 .form_lable {
@@ -506,7 +507,6 @@ input:invalid {
 .file_button {
    display: inline-flex;
    min-height: 40px;
-   border-radius: 30px;
    justify-content: center;
    align-items: center;
    background-color: #44ab23;
