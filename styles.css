@@ -544,6 +544,7 @@ input:invalid {
    align-items: center;
    gap: 0.5rem;
    z-index: 1;
+   font-weight: bold;
 }
 
 @media (max-width: 5000px) and (min-width: 2355px) {
