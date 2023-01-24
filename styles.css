@@ -12,6 +12,8 @@ body {
    background-attachment: fixed;
    display: flex;
    flex-direction: column;
+   position: relative;
+   min-height: 100vh;
 }
 
 .wrapper {
@@ -73,7 +75,7 @@ header {
    display: flex;
    justify-content: space-around;
    margin: auto;
-   /* flex-wrap: wrap; */
+   margin: 20px auto auto auto;
 }
 
 .btn_header {
@@ -129,7 +131,7 @@ img {
    width: auto;
    height: auto;
    border-radius: 15px;
-   background-color: #cee7cb94;
+   background-color: #cee7cbea;
    position: absolute;
    left: 0;
    right: 0;
@@ -144,19 +146,19 @@ img {
 }
 
 .news_post {
-   margin-top: 20px;
+   margin: 10px 5px 5px 5px;
    color: #34761e;
    /* font-weight: bold; */
    font-size: 1rem;
 }
 
 .heading_post {
-   margin: 5px;
+   margin: 5px 5px 0 5px;
    color: #34761e;
    font-size: 1rem;
 }
 
-/* Слайдер......................................................... */
+/* Блок с адресами аптек......................................................... */
 
 .pharmacy_adress_block {
    width: 90%;
@@ -191,6 +193,63 @@ img {
 .info_panel__mod1 {
    height: 500px;
    grid-template-columns: 50% 50%;
+}
+
+/*Модальное окно формы обратной связи..................................................*/
+.feedback_modal {
+   width: 70%;
+   height: 20%;
+   display: none;
+   box-shadow: 0 0 10px 0px black;
+   background-color: #cee7cbea;
+   border-radius: 10px;
+   justify-content: space-around;
+   position: absolute;
+   overflow: auto;
+   margin: auto;
+   top: 0; left: 0; bottom: 0; right: 0;
+   z-index: 2;
+}
+
+.feedback_message {
+   text-align: center;
+   color: #34761e;
+   font-weight: bold;
+   font-size: 1rem;
+   margin: auto;
+}
+
+.feedback_btn {
+   background: #5eab6026;
+   border: none;
+   border-radius: 7px;
+   color: #34761e;
+   font-weight: bold;
+   font-size: 1rem;
+   cursor: pointer;
+   margin: auto;
+   box-shadow: 0 0 10px 0px black;
+   padding: 10px;
+}
+
+.feedback_btn:hover {
+   transition: 200ms;
+   box-shadow: 0 0 3px black;
+}
+
+.feedback_btn:active {
+   box-shadow: none;
+}
+
+.overlay {
+   display: none;
+   background-color: #56aa3c7a;
+   backdrop-filter: blur(4px);
+   position: absolute;
+   overflow: auto;
+   margin: auto;
+   top: 0; left: 0; bottom: 0; right: 0;
+   z-index: 2;
 }
 
 /*Форма для обратной связи.........................................................................*/
@@ -240,7 +299,6 @@ img {
 	color:#44ab23;
 	border:#44ab23 solid 3px;
 }
-/*Форма для обратной связи.........................................................................*/
 
 /*Панель вакансий.........................................................................*/
 .job_openings {
@@ -253,6 +311,7 @@ img {
    display: none;
    opacity: 0;
 }
+
 /*Панель длкументации.........................................................................*/
 .documentation {
    width: 80%;
@@ -264,6 +323,7 @@ img {
    display: none;
    opacity: 0;
 }
+
 /*Панель истории.........................................................................*/
 .biography {
    width: 80%;
@@ -304,6 +364,7 @@ img {
 .visible {
    display: block;
 }
+
 .visible-flex {
    display: flex;
    flex-direction: column;
@@ -317,7 +378,7 @@ img {
    display: none;
 }
 
-/* Icons ---------------------------------- */
+/* Icons ----------------------------------------------------------- */
 #name{
 	background-image: url('./img/logo2.png');
 	background-size: 30px 30px;
@@ -343,7 +404,7 @@ img {
 #email:focus{
 	background-image: url('./img/logo2.png');
 	background-size: 30px 30px;
-  background-position: 11px 8px;
+   background-position: 11px 8px;
 	background-repeat: no-repeat;
 }
 
@@ -360,6 +421,7 @@ textarea {
     line-height: 150%;
     resize:vertical;
 }
+
 .feedback-subject-line {
    height: 55px;
 }
@@ -412,12 +474,61 @@ input:focus, textarea:focus {
   background-color:white;
 }
 
-
 .zero {
    height: 100px;
-   /* margin-top: 30px; */
 }
 
+/* Валидация формы------------------------------------------------------------ */
+input:invalid {
+   background-color: rgba(226, 194, 9, 0.342);
+}
+
+.form_item {
+    position: relative;
+}
+
+.form_lable {
+   font-size: 1.1rem;
+   display: block;
+   color: #3c3c3c;
+}
+
+.form_input {
+   position: absolute;
+   left: 0px;
+   top: 30px;
+   width: 165px;
+   height: 50px;
+   opacity: 0;
+   font-size: 0;
+   cursor: pointer;
+}
+
+.file_button {
+   display: inline-flex;
+   min-height: 40px;
+   border-radius: 30px;
+   justify-content: center;
+   align-items: center;
+   background-color: #44ab23;
+   padding: 0px 20px;
+   margin: 10px 0 20px 0;
+   color: white;
+   font-weight: bold;
+   cursor: pointer;
+   border: 4px solid white;
+}
+
+.form_item:hover .file_button {
+   background-color: white;
+   color: #44ab23;
+}
+
+.file_preview img {
+   max-width: 100%;
+}
+
+/*Подвал.........................................................................*/
 .footer {
    position: fixed;
    bottom: 0;
@@ -436,17 +547,16 @@ input:focus, textarea:focus {
    z-index: 1;
 }
 
-/* Валидация формы */
-input:invalid {
-   background-color: rgba(226, 194, 9, 0.342);
- }
+@media (max-width: 5000px) and (min-width: 2355px) {
+   .greating_block {
+      width: 40%;
+   }
 
- /* input:valid {
-   border: 6px solid #44ab23;
- } */
+   .img__history {
+      width: 40%;
+      margin: auto;
+   }
 
-/*Форма для обратной связи.........................................................................*/
-@media screen and (min-width: 3000px) {
    .news_post {
       font-size: 1rem;
    }
@@ -455,9 +565,41 @@ input:invalid {
       font-size: 1rem;
    }
 }
-@media screen and (min-width: 1530px) {
+
+@media (max-width: 2355px) and (min-width: 2170px) {
+   .greating_block {
+      width: 55%;
+   }
+
+   .img__history {
+      width: 50%;
+      margin: auto;
+   }
+}
+
+@media (max-width: 2170px) and (min-width: 1860px) {
+   .greating_block {
+      width: 60%;
+   }
+
+   .img__history {
+      width: 50%;
+      margin: auto;
+   }
+}
+
+@media (max-width: 1860px) and (min-width: 1460px) {
+   .greating_block {
+      width: 70%;
+   }
+
    .news_post {
       font-size: 1rem;
+   }
+
+   .img__history {
+      width: 60%;
+      margin: auto;
    }
 }
 @media screen and (max-width: 1250px) {

@@ -13,8 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
    const documentation = document.querySelector('.documentation')
    const biography = document.querySelector('.biography')
    const frameMap = document.querySelectorAll('.frameMap')
-   const formSend = document.querySelector('.form')
-   
+   const form = document.querySelector('.form')
+   const feedbackModal = document.querySelector('.feedback_modal')
+   const feedbackBtn = document.querySelector('.feedback_btn')
+   const overlay = document.querySelector('.overlay')
+   const feedbackMessage = document.querySelector('.feedback_message')
 
    //Имплементация загрузки карт во фреймы
    const mapFrame = ['https://yandex.ru/map-widget/v1/-/CCUvMHd3KA', 'https://yandex.ru/map-widget/v1/-/CCUvMXvK2D', 'https://yandex.ru/map-widget/v1/-/CCUvMXwcKC', 'https://yandex.ru/map-widget/v1/-/CCUvQESe0B', 'https://yandex.ru/map-widget/v1/-/CCUvQEtZKD', 'https://yandex.ru/map-widget/v1/-/CCUvQISTpA'];
@@ -64,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
          feetback.classList.remove('visible', 'smooth')
          jobOpenings.classList.remove('visible', 'smooth')
          documentation.classList.remove('visible', 'smooth')
-         biography.classList.remove('visible', 'smooth')
+         biography.classList.remove('visible-flex', 'smooth')
          arrayBtn.forEach((item) => {
             item.classList.remove('btnActiv'), 
             item.classList.remove('visible'), 
@@ -89,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
          pharmacyBlock.classList.add('novisible')
          jobOpenings.classList.remove('visible', 'smooth')
          documentation.classList.remove('visible', 'smooth')
-         biography.classList.remove('visible', 'smooth')
+         biography.classList.remove('visible-flex', 'smooth')
          hiddenMenuAndInfoPanel(arrayBtn)
       }
       //Имплементация кнопки ВАКАНСИИ
@@ -102,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
          pharmacyBlock.classList.add('novisible')
          feetback.classList.remove('visible', 'smooth')
          documentation.classList.remove('visible', 'smooth')
-         biography.classList.remove('visible', 'smooth')
+         biography.classList.remove('visible-flex', 'smooth')
          hiddenMenuAndInfoPanel(arrayBtn)
       }
       //Имплементация кнопки ДОКУМЕНТАЦИЯ
@@ -115,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
          pharmacyBlock.classList.add('novisible')
          feetback.classList.remove('visible', 'smooth')
          jobOpenings.classList.remove('visible', 'smooth')
-         biography.classList.remove('visible', 'smooth')
+         biography.classList.remove('visible-flex', 'smooth')
          hiddenMenuAndInfoPanel(arrayBtn)
       }
       //Имплементация кнопки Наша история
@@ -177,30 +180,97 @@ document.addEventListener('DOMContentLoaded', () => {
       openInfoCard(adressPanel, index)
    })})
 
-   //Отправка формы обратной связи
-   let feedbackMessage =[];
-   const getFormValue = (e) => {
-      e.preventDefault();
-      const userName = formSend.querySelector('[name="name"]')
-            userEmail = formSend.querySelector('[name="email"]'),
-            userSubject = formSend.querySelector('[name="text_subject"]'),
-            userMessage = formSend.querySelector('[name="text_message"]')
-      feedbackMessage = [...feedbackMessage, {
-         dataMessage: new Date,
-         userName: userName.value,
-         userEmail: userEmail.value,
-         text_subject: userSubject.value,
-         text_message: userMessage.value,
-      }]
-      console.log(feedbackMessage);
+   //Отправка файла-----------------------------------
+
+   //Получаем input #formFile в переменную
+   const formFile = document.querySelector('#formFile')
+
+   //Получаем div #formPreview в переменную
+   const formPreview = document.querySelector('#formPreview')
+
+   //Слушаем изменения в input #formFile
+   formFile.addEventListener('change', () => {
+      uploadFile(formFile.files[0])
+   })
+
+   //Создаем функцию uploadFile
+   function uploadFile(file) {
+      //проверка типа файла
+      if(!['image/jpg', 'image/jpeg', 'image/png', 'application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'text/plain', 'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'application/vnd.ms-publisher'].includes(file.type)) {
+         feedbackModal.classList.add('visible-flex')
+         overlay.classList.add('visible')
+         feedbackMessage.textContent = `Ваш файл не подходит для отправки. Разрешены файлы только с определенными расширениями`
+         formFile.value = ''
+         return
+      }
+
+      //проверка размера файла
+      if(file.size > 2 * 1024 * 1024) {
+         feedbackModal.classList.add('visible-flex')
+         overlay.classList.add('visible')
+         feedbackMessage.textContent = `Файл должен быть не более 2Мб`
+         return
+      }
+
+      //Проверки пройдены, выводим изображение в качестве превью
+      let reader = new FileReader();
+      reader.onload = function(e) {
+         if(e.target.result.includes('image')) {
+         formPreview.innerHTML = `<img style='width: 10%; margin-bottom: 20px;' src='${e.target.result}'>`
+         } else {
+            formPreview.innerHTML = `<img style='width: 10%; margin-bottom: 20px;' src='./img/documentation2.png'>`
+         }
+      }
+      reader.onerror = function(e) {
+         feedbackModal.classList.add('visible-flex')
+         overlay.classList.add('visible')
+         feedbackMessage.textContent = `Ошибка. Пожалуйста, попробуйте еще раз.`
+      }
+      reader.readAsDataURL(file);
    }
-   formSend.addEventListener('submit', getFormValue)
+   //------------------------------------------------------
+
+   //Отправка формы обратной связи
+   form.addEventListener('submit', formCheck)
+   async function formCheck(e) {
+      e.preventDefault();
+
+      const data = new FormData(form);
+      console.log(data);
+
+      let response = await fetch('send_mail.php', {
+         body: data,
+         method: 'POST'
+      })
+
+      if(response.ok) {
+         let result = await response.json()
+         feedbackModal.classList.add('visible-flex')
+         overlay.classList.add('visible')
+         feedbackMessage.textContent = `${result.message}`
+         form.reset()
+         formPreview.innerHTML = ''
+      } else {
+         feedbackModal.classList.add('visible-flex')
+         overlay.classList.add('visible')
+         feedbackMessage.textContent = `Ваше сообщение не отправлено. Код ошибки: ${response.status}`
+         form.reset()
+         formPreview.innerHTML = ''
+      }
+   }
+   //------------------------------------------------------
+
+   //Закрыть модальное окно отправки формы кнопкой
+   [feedbackBtn, overlay].forEach(item => item.addEventListener('click', () => {
+      feedbackModal.classList.remove('visible-flex')
+      overlay.classList.remove('visible')
+   }))
 
    //Загрузка даты в подвал(footer)
-   let year = document.querySelector("#year");
+   let year = document.querySelector("#year")
    $(document).ready(function () {
-   year.innerText = new Date().getFullYear();
-   });
+   year.innerText = new Date().getFullYear()
+   })
 
    //Импелементация карусели со свайпом
    $(document).ready(function(){
@@ -220,10 +290,10 @@ document.addEventListener('DOMContentLoaded', () => {
                  items:1
              },
              1480:{
-                 items:2
+                 items:1
              },
              3000:{
-                 items:3
+                 items:1
              }},
       });
       $(".js-owl-carousel-2").owlCarousel({
