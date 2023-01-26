@@ -213,8 +213,6 @@ img {
 .loading {
    width: 10%;
    height: 5%;
-   /* box-shadow: 0 0 10px 0px #5b9d53; */
-   /* background-color: #cee7cbea; */
    border-radius: 10px;
    justify-content: space-around;
    display: none;
