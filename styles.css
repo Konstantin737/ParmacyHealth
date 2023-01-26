@@ -173,11 +173,23 @@ img {
    display: grid;
    grid-template-columns: 100%;
    overflow:hidden;
-   margin-top: 100px;
+   margin-top: 1000px;
    cursor: pointer;
    opacity: 0;
-   transition: margin-top 2s, opacity 1s;
+   transition: margin-top 4s, opacity 1s;
    box-shadow: 0 0 10px 0px #325f2e;
+   animation-duration: 2s;
+   animation-name: infoPanel;
+}
+
+@keyframes infoPanel {
+   from {
+      margin-left: 200px;
+   }
+
+   to {
+      margin-left: 0px;
+   }
 }
 
 .info_panel:hover {
