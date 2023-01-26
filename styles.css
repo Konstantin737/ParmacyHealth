@@ -47,28 +47,28 @@ header {
    animation-name: slidein;
    animation-iteration-count: infinite;
    cursor: pointer;
- }
+}
 
- @keyframes slidein {
-   from {
-      transform: rotateY(180deg);
-   }
- 
-   to {
-      transform: rotateY(360deg);
-   }
- }
+@keyframes slidein {
+from {
+   transform: rotateY(180deg);
+}
 
- .logo_text {
-   font-size: 30px;
-   font-family: sans-serif;
-   line-height: 40px;
-   font-weight: bold;
-   margin: 5px 10px; 
-   background: linear-gradient(45deg, #4a974a 15%, #1dcf1d 30%, #3a8f3a);
-   -webkit-background-clip: text;
-   -webkit-text-fill-color: transparent;
- }
+to {
+   transform: rotateY(360deg);
+}
+}
+
+.logo_text {
+font-size: 30px;
+font-family: sans-serif;
+line-height: 40px;
+font-weight: bold;
+margin: 5px 10px; 
+background: linear-gradient(45deg, #4a974a 15%, #1dcf1d 30%, #3a8f3a);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
 
 .menu {
    width: 90%;
@@ -208,6 +208,48 @@ img {
    margin: auto;
    top: 0; left: 0; bottom: 0; right: 0;
    z-index: 2;
+}
+
+.loading {
+   width: 10%;
+   height: 5%;
+   /* box-shadow: 0 0 10px 0px #5b9d53; */
+   /* background-color: #cee7cbea; */
+   border-radius: 10px;
+   justify-content: space-around;
+   display: none;
+   position: absolute;
+   overflow: auto;
+   margin: auto;
+   top: 0; left: 0; bottom: 0; right: 0;
+   z-index: 2;
+}
+
+.loading_cube {
+   width: 1rem;
+   height: 1rem;
+   border-radius: 50%;
+   background-color: #24be12ea;
+}
+
+.loading_cube__animate {
+   animation-duration: 0.8s;
+   animation-name: cube;
+   animation-iteration-count: infinite;
+}
+
+.visible_loading {
+   display: inline-flex;
+}
+
+@keyframes cube {
+   from {
+      margin-top: 0px;
+   }
+   
+   to {
+      margin-top: 40px;
+   }
 }
 
 .feedback_message {

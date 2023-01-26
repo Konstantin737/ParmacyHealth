@@ -18,10 +18,29 @@ document.addEventListener('DOMContentLoaded', () => {
    const feedbackBtn = document.querySelector('.feedback_btn')
    const overlay = document.querySelector('.overlay')
    const feedbackMessage = document.querySelector('.feedback_message')
+   const loading = document.querySelector('.loading')
+   const loadingCube = document.querySelectorAll('.loading_cube')
 
    //Имплементация загрузки карт во фреймы
    const mapFrame = ['https://yandex.ru/map-widget/v1/-/CCUvMHd3KA', 'https://yandex.ru/map-widget/v1/-/CCUvMXvK2D', 'https://yandex.ru/map-widget/v1/-/CCUvMXwcKC', 'https://yandex.ru/map-widget/v1/-/CCUvQESe0B', 'https://yandex.ru/map-widget/v1/-/CCUvQEtZKD', 'https://yandex.ru/map-widget/v1/-/CCUvQISTpA', 'https://yandex.ru/map-widget/v1/?ll=60.606220%2C56.821422&mode=search&oid=1206284242&ol=biz&sctx=ZAAAAAgBEAAaKAoSCd2ZCYZzL05AEWEYsOQqbkxAEhIJtkjajT7mkz8RkBK7trdbcj8iBgABAgMEBSgKOABANkgBYitwcmljZXNfc25pcHBldHNfcmFua2luZ19tb2RlbF90aHJlc2hvbGQ9MC43YiFhZGRfc25pcHBldD10b3BvbnltX2Rpc2NvdmVyeS8xLnhiGnJhbmtpbmdfZm9ybXVsYT1sMl9kYzg1NDY1YilyZWxldl9pcnJlbF9maWx0ZXI9MS4wOmlycmVsX2RjMTEzODExX2V4cGJCcmVhcnI9c2NoZW1lX0xvY2FsL0dlby9MaXN0RGlzY292ZXJ5L0VuYWJsZURpc2NvdmVyeVRleHRSZXF1ZXN0cz0xYjpyZWFycj1zY2hlbWVfTG9jYWwvR2VvL0xpc3REaXNjb3ZlcnkvRW5hYmxlRW1wdHlSZXF1ZXN0cz0xYjpyZWFycj1zY2hlbWVfTG9jYWwvR2VvL0xpc3REaXNjb3ZlcnkvRW5hYmxlQ29tbW9uUGljTWVudT0xYjVyZWFycj1zY2hlbWVfTG9jYWwvR2VvL0xpc3REaXNjb3ZlcnkvRW5hYmxlUmVxdWVzdHM9MWIwcmVhcnI9c2NoZW1lX0xvY2FsL0dlby9Bc2tEaXNjb3ZlcnlGb3JUb3Bvbnltcz0xYjVyZWFycj1zY2hlbWVfTG9jYWwvR2VvL1Bvc3RmaWx0ZXIvSXJyZWxUaHJlc2hvbGQ9MC41NWI1cmVhcnI9c2NoZW1lX0xvY2FsL0dlby9MaXN0RGlzY292ZXJ5L0VuYWJsZVZlcnRpY2FsPTFiJ3JlYXJyPXNjaGVtZV9Mb2NhbC9HZW8vUHJpY2VzL0VuYWJsZWQ9MWIacmFua2luZ19mb3JtdWxhPWwyX2RjODU0NjVqAnJ1nQHNzEw9oAEAqAEAvQFHVNGrwgEL0t%2BZvwSQ9cHCoQTqAQDyAQD4AQCCAibQodCw0L%2FQtdGA0L7QsiDQv9C10YAuLCAzINCw0L%2FRgtC10LrQsIoCAJICAjU0mgIMZGVza3RvcC1tYXBz&sll=60.606220%2C56.821422&sspn=0.022323%2C0.005154&text=%D0%A1%D0%B0%D0%BF%D0%B5%D1%80%D0%BE%D0%B2%20%D0%BF%D0%B5%D1%80.%2C%203%20%D0%B0%D0%BF%D1%82%D0%B5%D0%BA%D0%B0&utm_source=share&z=17', 'https://yandex.ru/map-widget/v1/?ll=60.292056%2C56.862672&mode=search&oid=1063212606&ol=biz&sctx=ZAAAAAgCEAAaKAoSCX4CKEaWIE5AEYUoX9BCbExAEhIJSQ7Y1eQp8D8RKJ6zBYTWzT8iBgABAgMEBSgKOABAmldIAWIrcHJpY2VzX3NuaXBwZXRzX3JhbmtpbmdfbW9kZWxfdGhyZXNob2xkPTAuN2IhYWRkX3NuaXBwZXQ9dG9wb255bV9kaXNjb3ZlcnkvMS54YilyZWxldl9pcnJlbF9maWx0ZXI9MS4wOmlycmVsX2RjMTEzODExX2V4cGJCcmVhcnI9c2NoZW1lX0xvY2FsL0dlby9MaXN0RGlzY292ZXJ5L0VuYWJsZURpc2NvdmVyeVRleHRSZXF1ZXN0cz0xYjpyZWFycj1zY2hlbWVfTG9jYWwvR2VvL0xpc3REaXNjb3ZlcnkvRW5hYmxlRW1wdHlSZXF1ZXN0cz0xYjpyZWFycj1zY2hlbWVfTG9jYWwvR2VvL0xpc3REaXNjb3ZlcnkvRW5hYmxlQ29tbW9uUGljTWVudT0xYjVyZWFycj1zY2hlbWVfTG9jYWwvR2VvL0xpc3REaXNjb3ZlcnkvRW5hYmxlUmVxdWVzdHM9MWIwcmVhcnI9c2NoZW1lX0xvY2FsL0dlby9Bc2tEaXNjb3ZlcnlGb3JUb3Bvbnltcz0xYjVyZWFycj1zY2hlbWVfTG9jYWwvR2VvL1Bvc3RmaWx0ZXIvSXJyZWxUaHJlc2hvbGQ9MC41NWI1cmVhcnI9c2NoZW1lX0xvY2FsL0dlby9MaXN0RGlzY292ZXJ5L0VuYWJsZVZlcnRpY2FsPTFiJ3JlYXJyPXNjaGVtZV9Mb2NhbC9HZW8vUHJpY2VzL0VuYWJsZWQ9MWIacmFua2luZ19mb3JtdWxhPWwyX2RjODU0NjVqAnJ1nQHNzEw9oAEAqAEAvQFiH5YVwgEFvqz9%2BgPqAQDyAQD4AQCCAjbRgdC10LLQtdGA0LrQsCDQvdCw0LHQtdGA0LXQttC90YvQuSA5INC30LTQvtGA0L7QstGM0LWKAm8xODQxMDYxMDgkMTg0MTA1OTMyJDE4NDEwNjEwMCQxODQxMDYxMzIkMTg0MTA2MDE0JDUzNDM3MjYwNTU5JDE4NDEwNTk4NiQxODQxMDU5NTgkMTg0MTA1OTU2JDE4NDEwNjExNiQxODQxMDYxMzCSAgYxMjExMTCaAgxkZXNrdG9wLW1hcHM%3D&sll=60.292056%2C56.862672&sspn=0.031570%2C0.007281&text=%D1%81%D0%B5%D0%B2%D0%B5%D1%80%D0%BA%D0%B0%20%D0%BD%D0%B0%D0%B1%D0%B5%D1%80%D0%B5%D0%B6%D0%BD%D1%8B%D0%B9%209%20%D0%B7%D0%B4%D0%BE%D1%80%D0%BE%D0%B2%D1%8C%D0%B5&utm_source=share&z=16.6', 'https://yandex.ru/map-widget/v1/-/CCUvMXwcKC'];
 
+
+   //Функция загрузки
+   let count = 0
+   function load () {
+      let animate = setInterval(()=>{
+         if(count<=4) {
+         overlay.classList.add('visible');
+         loading.classList.add('visible_loading')
+         loadingCube[count].classList.add('loading_cube__animate')
+         count++} else {
+            clearInterval(animate);
+            loading.classList.remove('visible_loading');
+            overlay.classList.remove('visible');
+            loadingCube.forEach(item => item.classList.remove('loading_cube__animate'));
+            count = 0;
+      }},200)
+   }
 
    //Функция загрузки ссылок карт для фреймов
    const enterLinkFrame = (index) => {
@@ -236,25 +255,29 @@ document.addEventListener('DOMContentLoaded', () => {
    async function formCheck(e) {
       e.preventDefault();
 
+      load ()
       const data = new FormData(form);
-      console.log(data);
 
       let response = await fetch('send_mail.php', {
          body: data,
          method: 'POST'
       })
-
+      
       if(response.ok) {
          let result = await response.json()
-         feedbackModal.classList.add('visible-flex')
-         overlay.classList.add('visible')
-         feedbackMessage.textContent = `${result.message}`
+         setTimeout(()=>{
+            overlay.classList.add('visible');
+            feedbackModal.classList.add('visible-flex');
+            feedbackMessage.textContent = `${result.message}`;
+         },1200);
          form.reset()
          formPreview.innerHTML = ''
       } else {
-         feedbackModal.classList.add('visible-flex')
-         overlay.classList.add('visible')
-         feedbackMessage.textContent = `Ваше сообщение не отправлено. Код ошибки: ${response.status}`
+         setTimeout(()=>{
+            overlay.classList.add('visible');
+            feedbackModal.classList.add('visible-flex');
+            feedbackMessage.textContent = `Ваше сообщение не отправлено. Код ошибки: ${response.status}`;
+         },1200)
          form.reset()
          formPreview.innerHTML = ''
       }
