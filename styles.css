@@ -50,13 +50,13 @@ header {
 }
 
 @keyframes slidein {
-from {
-   transform: rotateY(180deg);
-}
+   from {
+      transform: rotateY(180deg);
+   }
 
-to {
-   transform: rotateY(360deg);
-}
+   to {
+      transform: rotateY(360deg);
+   }
 }
 
 .logo_text {
@@ -100,12 +100,12 @@ background: linear-gradient(45deg, #4a974a 15%, #1dcf1d 30%, #3a8f3a);
 }
 
 .btn_header:active {
-   box-shadow: none;
+   box-shadow: inset 0 0 10px #419721;
 }
 
 .btnActiv {
    background: #44ab23;
-   box-shadow: none;
+   box-shadow: inset 0 0 10px #2b5c1a;
    color: white;
 }
 
@@ -177,7 +177,7 @@ img {
    cursor: pointer;
    opacity: 0;
    transition: margin-top 2s, opacity 1s;
-   box-shadow: 0 0 10px 0px #325f2e
+   box-shadow: 0 0 10px 0px #325f2e;
 }
 
 .info_panel:hover {
@@ -186,7 +186,7 @@ img {
 }
 
 .info_panel:active {
-   box-shadow: none;
+   box-shadow: inset 0 0 10px #2b5c1a;
 }
 
 .info_panel__mod1 {
@@ -208,6 +208,20 @@ img {
    margin: auto;
    top: 0; left: 0; bottom: 0; right: 0;
    z-index: 2;
+   animation-duration: 0.4s;
+   animation-name: modalFeedback;
+}
+
+@keyframes modalFeedback {
+   from {
+      width: 0%;
+      height: 0%;
+   }
+   
+   to {
+      width: 70%;
+      height: 20%;
+   }
 }
 
 .loading {
